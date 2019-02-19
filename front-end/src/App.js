@@ -6,7 +6,8 @@ import Home from './Home';
 
 class App extends Component {
   addNewTask(e){
-    console.log(e);
+    e.preventDefault();
+    console.dir(e.target);
   }
 
   render() {
