@@ -8,12 +8,13 @@ class Home extends Component{
             date: '',
             taskArray: [],
         };
+        this.changeTask = this.changeTask.bind(this);
+        this.changeDate = this.changeDate.bind(this);
     }
 
-    addNewTask(e){
+    addNewTask = (e)=>{ //You can do this so you won't have to do this.method.bind(this) up top.
         e.preventDefault();
-        this.setState({
-        });
+        this.props.addNewTask(this.state.task, this.state.date);
     }
 
     changeTask(e){
@@ -41,8 +42,8 @@ class Home extends Component{
                 </div>    
                 <div className="container">
                     <form onSubmit={this.addNewTask} className="add-box">
-                        <input onChange={this.changeTask} type="text" id="new-task" placeholder="New Task" />
-                        <input onChange={this.changeDate} type="date" id="new-task-date" />
+                        <input onChange={this.changeTask} type="text" id="new-task" placeholder="New Task" value={this.state.task} />
+                        <input onChange={this.changeDate} type="date" id="new-task-date" value={this.state.date} />
                         <button type="submit" className="btn btn-primary">Add Task</button>
                     </form>
                     <table className="table table-bordered">
