@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Navbar from './Navbar';
 import Home from './Home';
+import Edit from './Edit';
 import axios from 'axios';
 
 class App extends Component {
@@ -48,6 +49,7 @@ class App extends Component {
         <Route exact path="/" render={()=>{
           return (<Home taskList={this.state.taskList} addNewTask={this.addNewTask} />);
         }} />
+        <Route exact path="/edit/:id" component={Edit} />
       </div>
       </Router>
     );

@@ -38,4 +38,14 @@ router.get('/getTasks',(req,res,next)=>{
   });
 })
 
+router.get('/getTask/:tId',(req,res,next)=>{
+  const tId = req.params.tId;
+  const selectTaskQuery = `SELECT * FROM tasks WHERE id = ?;`;
+  connection.query(selectTaskQuery,[tId],(err,result)=>{
+    if(err){throw err}
+    console.log(result[0]);
+    res.json({task:result[0]});
+  });
+});
+
 module.exports = router;

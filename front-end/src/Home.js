@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import {Link} from 'react-router-dom';
 
 class Home extends Component{
     constructor(){
@@ -34,12 +35,16 @@ class Home extends Component{
             return(
                 <tr key={task.id}>
                     <td>{task.taskName} - {moment(task.taskDate).format('MMMM Do YYYY')}</td>
-                    <td><button className="btn red">
+                    <td><button className="btn red waves-effect waves-light">
                         <i className="material-icons">delete</i>
                     </button></td>
-                    <td><button className="btn blue">
-                        <i className="material-icons">edit</i>
-                    </button></td>
+                    <td>
+                        <Link to={"/edit/"+task.id}>
+                            <button className="btn blue waves-effect waves-light">
+                                <i className="material-icons">edit</i>
+                            </button>
+                        </Link>
+                    </td>
                 </tr>
             )
         });
@@ -58,7 +63,7 @@ class Home extends Component{
                     <form onSubmit={this.addNewTask} className="add-box">
                         <input onChange={this.changeTask} type="text" id="new-task" placeholder="New Task" value={this.state.task} />
                         <input onChange={this.changeDate} type="date" id="new-task-date" value={this.state.date} />
-                        <button type="submit" className="btn btn-primary">Add Task</button>
+                        <button type="submit" className="btn btn-primary waves-effect waves-light">Add Task</button>
                     </form>
                     <table className="table table-bordered">
                         <thead>
