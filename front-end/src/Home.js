@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 class Home extends Component{
     constructor(){
@@ -32,7 +33,7 @@ class Home extends Component{
         const taskArray = this.props.taskList.map((task)=>{
             return(
                 <tr key={task.id}>
-                    <td>{task.taskName} - {task.taskDate}</td>
+                    <td>{task.taskName} - {moment(task.taskDate).format('MMMM Do YYYY')}</td>
                     <td><button className="btn red">
                         <i className="material-icons">delete</i>
                     </button></td>
