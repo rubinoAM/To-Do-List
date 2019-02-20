@@ -18,6 +18,10 @@ class Home extends Component{
         this.props.addNewTask(this.state.task, this.state.date);
     }
 
+    deleteTask = (id) => {
+        this.props.deleteTask(id);
+    }
+
     changeTask(e){
         this.setState({
             task:e.target.value,
@@ -36,7 +40,7 @@ class Home extends Component{
                 <tr key={task.id}>
                     <td>{task.taskName} - {moment(task.taskDate).format('MMMM Do YYYY')}</td>
                     <td>
-                        <button className="btn red waves-effect waves-light">
+                        <button onClick={()=>{this.deleteTask(task.id)}} className="btn red waves-effect waves-light">
                             <i className="material-icons">delete</i>
                         </button>
                     </td>

@@ -63,7 +63,7 @@ router.get('/getTask/:tId',(req,res,next)=>{
 });
 
 // Delete Task
-router.post('/delete/:tId',(req,res,next)=>{
+router.post('/deleteTask/:tId',(req,res,next)=>{
   const tId = req.params.tId;
   const deleteTaskQuery = `DELETE FROM tasks WHERE id = ?`;
   connection.query(deleteTaskQuery,[tId],(err,result)=>{

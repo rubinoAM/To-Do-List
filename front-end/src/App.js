@@ -41,13 +41,18 @@ class App extends Component {
     })
   }
 
-  deleteTask = ()=>{
+  deleteTask = (id)=>{
     axios({
       method:'POST',
-      url:'http://localhost:3006/deleteTask',
+      url:`http://localhost:3006/deleteTask/${id}`,
     }).then((backEndResp)=>{
-      this.setState({
-        taskList:backEndResp
+      axios({
+        method:'GET',
+        url:'http://localhost:3006/getTasks',
+      }).then((storedTasks)=>{
+        this.setState({
+          taskList:storedTasks.data
+        });
       })
     })
   }
@@ -58,7 +63,7 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <Route exact path="/" render={()=>{
-          return (<Home taskList={this.state.taskList} addNewTask={this.addNewTask} />);
+          return (<Home taskList={this.state.taskList} deleteTask={this.deleteTask} addNewTask={this.addNewTask} />);
         }} />
         <Route exact path="/edit/:id" component={Edit} />
       </div>
