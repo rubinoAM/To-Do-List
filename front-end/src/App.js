@@ -41,6 +41,17 @@ class App extends Component {
     })
   }
 
+  deleteTask = ()=>{
+    axios({
+      method:'POST',
+      url:'http://localhost:3006/deleteTask',
+    }).then((backEndResp)=>{
+      this.setState({
+        taskList:backEndResp
+      })
+    })
+  }
+
   render() {
     return (
       <Router>

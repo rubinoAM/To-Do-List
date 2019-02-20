@@ -52,18 +52,31 @@ class Edit extends Component{
             },
             url:`http://localhost:3006/edit/`
         }).then((jsonData)=>{
-            console.log(jsonData.data);
+            //console.log(jsonData.data);
+            if(jsonData.data.msg === 'updated'){
+                this.props.history.push('/');
+            }
         });
     }
 
     render(){
         return(
-            <div className="container">
-                <form onSubmit={this.editTask} className="add-box">
-                    <input onChange={this.changeTask} type="text" id="new-task" value={this.state.task.taskName} />
-                    <input onChange={this.changeDate} type="date" id="new-task-date" value={moment(this.state.task.taskDate).format('YYYY-MM-DD')} />
-                    <button type="submit" className="btn btn-primary">Update</button>
-                </form>            
+            <div className="to-do-app">
+                <div className="section no-pad-bot" id="index-banner">
+                    <div className="container">
+                        <h1 className="header center orange-text">To-Do List</h1>
+                        <div className="row center">
+                            <h5 className="header col s12 light">Edit Entry</h5>
+                        </div>
+                    </div>
+                </div>  
+                <div className="container">
+                    <form onSubmit={this.editTask} className="add-box">
+                        <input onChange={this.changeTask} type="text" id="new-task" value={this.state.task.taskName} />
+                        <input onChange={this.changeDate} type="date" id="new-task-date" value={moment(this.state.task.taskDate).format('YYYY-MM-DD')} />
+                        <button type="submit" className="btn btn-primary">Update</button>
+                    </form>            
+                </div>
             </div>
         )
     }

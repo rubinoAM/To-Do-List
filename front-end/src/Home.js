@@ -35,9 +35,11 @@ class Home extends Component{
             return(
                 <tr key={task.id}>
                     <td>{task.taskName} - {moment(task.taskDate).format('MMMM Do YYYY')}</td>
-                    <td><button className="btn red waves-effect waves-light">
-                        <i className="material-icons">delete</i>
-                    </button></td>
+                    <td>
+                        <button className="btn red waves-effect waves-light">
+                            <i className="material-icons">delete</i>
+                        </button>
+                    </td>
                     <td>
                         <Link to={"/edit/"+task.id}>
                             <button className="btn blue waves-effect waves-light">
