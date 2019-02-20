@@ -35,7 +35,7 @@ class Edit extends Component{
     changeDate = (e)=>{
         const value = e.target.value;
         let taskStateDummy = {...this.state.task};
-        taskStateDummy.taskDate = value;
+        taskStateDummy.taskDate = moment(value).format('YYYY-MM-DD');
 
         this.setState({
             task:taskStateDummy
@@ -44,6 +44,16 @@ class Edit extends Component{
 
     editTask = (e)=>{
         e.preventDefault();
+        axios({
+            method:'POST',
+            data:{
+                task: this.state.task,
+                id: this.props.match.params.id,
+            },
+            url:`http://localhost:3006/edit/`
+        }).then((jsonData)=>{
+            console.log(jsonData.data);
+        });
     }
 
     render(){

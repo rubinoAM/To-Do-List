@@ -28,6 +28,21 @@ router.post('/addTask', (req,res,next) => {
   })
 });
 
+// Edit Task
+router.post('/edit',(req,res,next)=>{
+  const taskName = req.body.task.taskName;
+  const taskDate = req.body.task.taskDate.substring(0,10);
+  const id = req.body.id;
+  const updateQuery = `UPDATE tasks SET taskName = ?, taskDate = ? WHERE id = ?;`;
+
+  connection.query(updateQuery,[taskName,taskDate,id],(err,results)=>{
+    if(err){throw err;}
+    res.json({
+      msg:'updated',
+    })
+  })
+})
+
 // GET Tasks
 router.get('/getTasks',(req,res,next)=>{
   const selectQuery = `SELECT * FROM tasks;`;
@@ -43,7 +58,6 @@ router.get('/getTask/:tId',(req,res,next)=>{
   const selectTaskQuery = `SELECT * FROM tasks WHERE id = ?;`;
   connection.query(selectTaskQuery,[tId],(err,result)=>{
     if(err){throw err}
-    console.log(result[0]);
     res.json({task:result[0]});
   });
 });
