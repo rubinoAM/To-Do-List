@@ -6,7 +6,6 @@ class Home extends Component{
         this.state = {
             task: '',
             date: '',
-            taskArray: [],
         };
         this.changeTask = this.changeTask.bind(this);
         this.changeDate = this.changeDate.bind(this);
@@ -30,6 +29,21 @@ class Home extends Component{
     }
 
     render(){
+        console.log(this.props.taskList);
+        const taskArray = this.props.taskList.map((task)=>{
+            return(
+                <tr key={task.id}>
+                    <td>{task.taskName} - {task.taskDate}</td>
+                    <td><button className="btn red">
+                        <i className="material-icons">delete</i>
+                    </button></td>
+                    <td><button className="btn blue">
+                        <i className="material-icons">edit</i>
+                    </button></td>
+                </tr>
+            )
+        });
+
         return(
             <div className="to-do-app">
                 <div className="section no-pad-bot" id="index-banner">
@@ -55,7 +69,7 @@ class Home extends Component{
                             </tr>
                         </thead>
                         <tbody>
-                            {/* {taskArray} */}
+                            {taskArray}
                         </tbody>
                     </table>
                 </div>

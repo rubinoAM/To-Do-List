@@ -6,7 +6,14 @@ import Home from './Home';
 import axios from 'axios';
 
 class App extends Component {
-  addNewTask(task,date){
+  constructor(){
+    super();
+    this.state = {
+      taskList: [],
+    }
+  }
+
+  addNewTask = (task,date)=>{
     console.log(task,date);
     axios({
       method:'POST',
@@ -16,7 +23,9 @@ class App extends Component {
         taskDate: date,
       },
     }).then((backEndResp)=>{
-      console.log(backEndResp);
+      this.setState({
+        taskList:backEndResp.data,
+      });
     })
   }
 
@@ -26,7 +35,7 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <Route exact path="/" render={()=>{
-          return (<Home addNewTask={this.addNewTask} />);
+          return (<Home taskList={this.state.taskList} addNewTask={this.addNewTask} />);
         }} />
       </div>
       </Router>
