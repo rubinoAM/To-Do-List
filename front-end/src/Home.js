@@ -29,7 +29,6 @@ class Home extends Component{
     }
 
     render(){
-        console.log(this.props.taskList);
         const taskArray = this.props.taskList.map((task)=>{
             return(
                 <tr key={task.id}>

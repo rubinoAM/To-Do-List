@@ -13,6 +13,17 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+    axios({
+      method:'GET',
+      url:'http://localhost:3006/getTasks',
+    }).then((storedTasks)=>{
+      this.setState({
+        taskList:storedTasks.data
+      });
+    })
+  }
+
   addNewTask = (task,date)=>{
     console.log(task,date);
     axios({

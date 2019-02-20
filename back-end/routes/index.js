@@ -23,9 +23,19 @@ router.post('/addTask', (req,res,next) => {
     const getTasksQuery = `SELECT * FROM tasks;`;
     connection.query(getTasksQuery,(nextErr,nextRes)=>{
       if(nextErr){throw nextErr;}
-      res.json(nextRes)
+      res.json(nextRes);
     });
   })
 });
+
+// GET Tasks
+router.get('/getTasks',(req,res,next)=>{
+  const selectQuery = `SELECT * FROM tasks;`;
+
+  connection.query(selectQuery,(err,results)=>{
+    if(err){throw err;}
+    res.json(results);
+  });
+})
 
 module.exports = router;
